@@ -1,0 +1,39 @@
+.nav-component {
+	background-color: black;
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 50px;
+}
+
+.wrapper {
+	/* background-color: red; */
+	width: 90%;
+	
+}
+
+#menu {
+	/* background-color: gold; */
+	width: 400px;
+	display: flex;
+	flex-direction: row;
+}
+
+.menu-links {
+	width: 100%;
+	/* background-color: white; */
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.menu-links a {
+	/* width: 250px; */
+	/* background-color: cyan; */
+	color: white;
+	text-decoration: none;
+}
+
+.menu-links .active {
+	color: red;
+}

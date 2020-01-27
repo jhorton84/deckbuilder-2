@@ -1,0 +1,22 @@
+.home-component {
+	height: 100%;
+	width:  100%;
+	background: black;
+	display: flex;
+	justify-content: center;
+	/* align-items: center; */
+	/* position: relative; */
+	/* flex-direction: column; */
+}
+
+.box {
+	height: 200px;
+	width: 200px;
+	background: red;
+
+}
+
+.home-component video {
+	height: 100%;
+
+}

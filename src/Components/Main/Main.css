@@ -1,0 +1,8 @@
+.main-component {
+	height: calc(100% + 150px);
+	background: gray;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+

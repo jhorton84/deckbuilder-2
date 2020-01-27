@@ -1,0 +1,12 @@
+.displayed-cards {
+	height: calc(100vh - 100px);
+	background: orange;
+	overflow-y: scroll;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.magic-card {
+	margin: 5px;
+}
