@@ -5,8 +5,11 @@ This project is a remake of my first `ReactJs` project during my time in a codin
 ### How The Application Works
 This application makes an external GET request from the scryfall API and renders the card images as a list for the user to see. This list can then be filtered using a set of inputs to narrow down the cards to specific cases. Cards can be filtered by their:
 	• name 
-	• flavor text 
+<br />
+	• flavor text
+<br />
 	• type (Land, Creature, Sorcery, Planeswalker)
+<br />
 	• color 
 	
 <br />
