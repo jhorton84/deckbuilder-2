@@ -1,4 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Magic: The Gathering Deckbuilder
+This project is a remake of my first `ReactJs` project during my time in a coding bootcamp. After a year of learning `ReactJs`, `JavaScript`, and `NodeJs` I decided to rewrite the project to see how I could improve upon the original. [Magic DeckBuilder](https://github.com/jhorton84/MTG-deckbuilder).
+
+### How The Application Works
+This application makes an external GET request from the scryfall API and renders them as a list for the user to see. This list can then be filtered using a set of inputs to narrow down the cards to specific cases. 
+
 
 ## Available Scripts
 
