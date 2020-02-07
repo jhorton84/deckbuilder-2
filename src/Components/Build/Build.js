@@ -3,6 +3,7 @@ import './Build.css';
 import axios from 'axios';
 import CardsDisplayer from '../CardsDisplayer/CardsDisplayer';
 import SelectedCardsList from '../SelectedCardsList/SelectedCardsList';
+import CardModal from '../CardModal/CardModal';
 
 
 class Build extends Component {
@@ -17,7 +18,12 @@ class Build extends Component {
 		}
 	}
 	componentDidMount=()=>{
-		this.getCardsFromApi()
+		this.getCardsFromApi();
+		// axios.get('/api/getStuff').then(res => {
+			
+		// }).catch(error => {
+		// 	console.log('no stuff to get', error);
+		// })
 	}  
 
 	getCardsFromApi = () => {
@@ -31,29 +37,33 @@ class Build extends Component {
 	
 	//when a card is selected the card name and card object are set to their respective values in state.
 	//then the setSelected cards function is fired which adds the card to the selectedCards array in state.
-	setCard = (card) => {
-		console.log('card', card)
-		this.setState({
-			selectedCard: card,
-			selectedName: card.name
-		});
-		this.toggler(this.state.iHaveCard);
-		
-		// this.setSelectedCards(card);
-	}
-
-	// toggler=()=> {
+	// setCard = (card) => {
+	// 	console.log('card', card)
 	// 	this.setState({
-	// 		[property]: !this[property]
-	// 	})
+	// 		selectedCard: card,
+	// 		selectedName: card.name
+	// 	});
+	// 	this.toggler(this.state.iHaveCard);
+		
 	// }
 
-	toggler = (property) => {
-		console.log('iHaveCard:', this.state.iHaveCard)
-		this.setState((prevState) => {
-			return {
-				property: !prevState[property]
-			};
+	setCard = (card) => {
+		console.log('card in setCard', card);
+		axios.post('/api/createCardList', card).then(res => {
+			console.log('response from setCard', res.data);
+			this.setState({
+				selectedCard: res.data.card,
+				selectedName: res.data.name
+			})
+		}).catch(error => {
+			console.log("error in setCard", error);
+		})
+	}
+
+	toggler=()=> {
+		// console.log('iHaveCard', this.state.iHaveCard);
+		this.setState({
+			iHaveCard: !this.state.iHaveCard
 		})
 	}
 
@@ -66,24 +76,36 @@ class Build extends Component {
 	}
 
 	render() {
-		const {cardsApi, selectedCards} = this.state;
+		const {cardsApi, selectedCards, selectedCard} = this.state;
 		console.log('selectedCards state', selectedCards)
 		// console.log('selectedCareds.length', selectedCards.length);
 		return (
-			<div className='build-component component-container'>
-				searchTools
-				<div className='cards-wrapper'>
-					<div className='searched-cards'>
-						<CardsDisplayer 
-							cards={cardsApi}
-							setCard={this.setCard}
-						/>
-					</div>
-					<div className='selected-cards'>
-						<SelectedCardsList selectedCards={selectedCards} />
+			<div>
+				{
+					this.state.iHaveCard && this.state.iHaveCard 
+					? <CardModal 
+					selectedCard={selectedCard}
+					toggler={this.toggler}
+					/>
+					:
+				
+				<div className='build-component component-container'>
+					searchTools
+					<div className='cards-wrapper'>
+						<div className='searched-cards'>
+							<CardsDisplayer 
+								cards={cardsApi}
+								setCard={this.setCard}
+							/>
+						</div>
+						<div className='selected-cards'>
+							<SelectedCardsList selectedCards={selectedCards} />
+						</div>
 					</div>
 				</div>
+				}
 			</div>
+				
 		)
 	}
 }

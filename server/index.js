@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const dotenv = require('dotenv');
 dotenv.config();
+const ctrl = require('./controller');
 
 
 
@@ -21,17 +22,24 @@ app.use(session({
 }));
 // Middleware
 
-massive(process.env.CONNECTION_STRING).then(database => {
-    app.set('db', database)
-}).catch(error => {
-	console.log('error in massive', error);
-	// res.status(500).send('something is wrong in massive set up')
-})
+
+// ===============================================================================
+//----- keep getting an error for massive function... commented out for now ------
+//================================================================================
+// massive(process.env.CONNECTION_STRING).then(database => {
+//     app.set('db', database)
+// });
 
 
 app.use( express.static( `${__dirname}/../build` ) );
 
+
+
 // Endpoints
+app.post('/api/createCardList', ctrl.setCardToList);
+// app.get('/api/getStuff', ctrl.getStuff);
+
+
 
 
 const path = require('path')

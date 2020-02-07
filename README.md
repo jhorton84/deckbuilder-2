@@ -3,8 +3,17 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 This project is a remake of my first `ReactJs` project during my time in a coding bootcamp. After a year of learning `ReactJs`, `JavaScript`, and `NodeJs` I decided to rewrite the project to see how I could improve upon the original. [Magic DeckBuilder](https://github.com/jhorton84/MTG-deckbuilder).
 
 ### How The Application Works
-This application makes an external GET request from the scryfall API and renders them as a list for the user to see. This list can then be filtered using a set of inputs to narrow down the cards to specific cases. 
+This application makes an external GET request from the scryfall API and renders the card images as a list for the user to see. This list can then be filtered using a set of inputs to narrow down the cards to specific cases. Cards can be filtered by their:
+	• name 
+	• flavor text 
+	• type (Land, Creature, Sorcery, Planeswalker)
+	• color 
+	
+<br />
+Each image can then be selected and then added to the users "card list" allowing them to customize a collection into their own personalized deck. Once the user has determined all the cards they want to use in their personalized deck they are able to save these cards in the database under a customized deck name.
 
+### Credit
+All the images in this application belong to [Wizards of the Coast](https://magic.wizards.com/en) including the gif/video that plays on the landing page. The card images come from the [scryfall API](https://scryfall.com/docs/api). I couldn't have built this without either of these sources and would like to personally thank all the individuals who put in so much hard work to make these sources available.
 
 ## Available Scripts
 
