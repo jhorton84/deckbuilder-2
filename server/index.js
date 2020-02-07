@@ -2,8 +2,7 @@ const express = require('express');
 const massive = require('massive');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const dotenv = require('dotenv');
-dotenv.config();
+require('dotenv').config();
 const ctrl = require('./controller');
 
 
