@@ -28,7 +28,7 @@ class Build extends Component {
 			})
 		})
 	}
-
+	
 	//when a card is selected the card name and card object are set to their respective values in state.
 	//then the setSelected cards function is fired which adds the card to the selectedCards array in state.
 	setCard = (card) => {
