@@ -50,11 +50,11 @@ class Build extends Component {
 	setCard = (card) => {
 		console.log('card in setCard', card);
 		axios.post('/api/createCardList', card).then(res => {
-			console.log('response from setCard', res.data);
+			// console.log('response from setCard', res.data);
 			this.setState({
-				selectedCard: res.data.card,
-				selectedName: res.data.name
+				selectedCards: res.data
 			})
+			console.log('selectedCards', this.state.selectedCards);
 		}).catch(error => {
 			console.log("error in setCard", error);
 		})

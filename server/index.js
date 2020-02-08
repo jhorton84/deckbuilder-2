@@ -6,9 +6,11 @@ require('dotenv').config();
 const ctrl = require('./controller');
 
 
+// console.log("we are doingrs crazy shit", require('dotenv').config());
+
 
 const app = express();
-
+// console.log(".env", process.env.SESSION_SECRET);
 app.use(bodyParser.json());
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -16,8 +18,7 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 7 * 2,
-    },
-    deckCards: []
+    }
 }));
 // Middleware
 
@@ -25,8 +26,10 @@ app.use(session({
 // ===============================================================================
 //----- keep getting an error for massive function... commented out for now ------
 //================================================================================
-// massive(process.env.CONNECTION_STRING).then(database => {
-//     app.set('db', database)
+// const db = massive(process.env.CONNECTION_STRING).then(database => {
+
+// 	app.set('db', database)
+// 	console.log('hit the massive massively in the massive');
 // });
 
 
