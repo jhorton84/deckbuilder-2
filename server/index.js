@@ -38,8 +38,8 @@ app.use( express.static( `${__dirname}/../build` ) );
 
 
 // Endpoints
-app.post('/api/createCardList', ctrl.setCardToList);
-// app.get('/api/getStuff', ctrl.getStuff);
+app.post('/api/selectedCards', ctrl.setCardToList);
+app.delete('/api/selectedCards/:id', ctrl.deleteCardFromSelectedCardList);
 
 
 

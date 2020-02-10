@@ -1,0 +1,19 @@
+.card-list-container {
+	display: flex;
+	/* width: 50vw; */
+	background: orange;
+	flex-direction: column;
+}
+
+.selectedCards {
+	position: relative;
+	display: flex;
+}
+/* .selectedCards button {
+	position: absolute;
+	top: 0;
+	right: -5px;
+} */
+
+
+

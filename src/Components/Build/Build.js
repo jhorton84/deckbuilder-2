@@ -37,19 +37,18 @@ class Build extends Component {
 	
 	//when a card is selected the card name and card object are set to their respective values in state.
 	//then the setSelected cards function is fired which adds the card to the selectedCards array in state.
-	// setCard = (card) => {
-	// 	console.log('card', card)
-	// 	this.setState({
-	// 		selectedCard: card,
-	// 		selectedName: card.name
-	// 	});
-	// 	this.toggler(this.state.iHaveCard);
-		
-	// }
+	selectCard = (card) => {
+		console.log('card passed into selectCard function', card)
+		this.setState({
+			selectedCard: card,
+			selectedName: card.name
+		});
+		this.toggler(this.state.iHaveCard);
+	}
 
 	setCard = (card) => {
 		console.log('card in setCard', card);
-		axios.post('/api/createCardList', card).then(res => {
+		axios.post('/api/selectedCards', card).then(res => {
 			// console.log('response from setCard', res.data);
 			this.setState({
 				selectedCards: res.data
@@ -58,34 +57,39 @@ class Build extends Component {
 		}).catch(error => {
 			console.log("error in setCard", error);
 		})
+		this.toggler(this.state.iHaveCard);
 	}
 
 	toggler=()=> {
 		// console.log('iHaveCard', this.state.iHaveCard);
 		this.setState({
-			iHaveCard: !this.state.iHaveCard
+			iHaveCard: !this.state.iHaveCard,
 		})
 	}
 
-	setSelectedCards = newCard => {
-		// console.log('selected length', this.state.selectedCards.length)
-		console.log('newCard', newCard);
-		this.setState({
-			selectedCards: [...this.state.selectedCards, newCard]
+	deleteCardFromSelectedCards = (id) => {
+		axios.delete(`/api/selectedCards/${id}`).then(res => {
+			console.log('cards after delete server', res.data)
+			this.setState({
+				selectedCards: res.data
+			})
 		})
 	}
 
 	render() {
 		const {cardsApi, selectedCards, selectedCard} = this.state;
-		console.log('selectedCards state', selectedCards)
-		// console.log('selectedCareds.length', selectedCards.length);
+		// console.log('selectedCards state', selectedCards)
+		// console.log('selectedCards.length', selectedCards.length);
 		return (
-			<div>
+			<div className='cards-container'>
 				{
 					this.state.iHaveCard && this.state.iHaveCard 
 					? <CardModal 
-					selectedCard={selectedCard}
-					toggler={this.toggler}
+						selectedCard={selectedCard}
+						toggler={this.toggler}
+						setCard={this.setCard}
+						selectedCards={selectedCards}
+						deleteCardFromSelectedCards={this.deleteCardFromSelectedCards} 
 					/>
 					:
 				
@@ -96,10 +100,15 @@ class Build extends Component {
 							<CardsDisplayer 
 								cards={cardsApi}
 								setCard={this.setCard}
+								toggler={this.toggler}
+								selectCard={this.selectCard}
 							/>
 						</div>
 						<div className='selected-cards'>
-							<SelectedCardsList selectedCards={selectedCards} />
+							<SelectedCardsList 
+								selectedCards={selectedCards}
+								deleteCardFromSelectedCards={this.deleteCardFromSelectedCards} 
+							/>
 						</div>
 					</div>
 				</div>
