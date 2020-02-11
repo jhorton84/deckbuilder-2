@@ -3,6 +3,7 @@ import './Main.css';
 import {Switch, Route} from 'react-router-dom';
 import Home from '../Home/Home';
 import Build from '../Build/Build';
+import SavedDecks from '../SavedDecks/SavedDecks';
 
 function Main() {
 	return (
@@ -11,6 +12,7 @@ function Main() {
 			<Switch>
               <Route exact path='/' component = {Home} />
               <Route path='/build' component = {Build} />
+              <Route path='/saved' component = {SavedDecks} />
             </Switch>
 		</div>
 	);

@@ -1,0 +1,6 @@
+.Search {
+	height: 50px;
+	background: red;
+	display: flex;
+	align-items: center;
+}

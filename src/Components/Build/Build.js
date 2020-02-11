@@ -4,7 +4,7 @@ import axios from 'axios';
 import CardsDisplayer from '../CardsDisplayer/CardsDisplayer';
 import SelectedCardsList from '../SelectedCardsList/SelectedCardsList';
 import CardModal from '../CardModal/CardModal';
-
+import Search from '../Search/Search';
 
 class Build extends Component {
 	constructor() {
@@ -14,16 +14,12 @@ class Build extends Component {
 			selectedCard: '',
 			selectedName: '',
 			selectedCards: [],
-			iHaveCard: false
+			iHaveCard: false,
+			searchNameValue: ''
 		}
 	}
 	componentDidMount=()=>{
 		this.getCardsFromApi();
-		// axios.get('/api/getStuff').then(res => {
-			
-		// }).catch(error => {
-		// 	console.log('no stuff to get', error);
-		// })
 	}  
 
 	getCardsFromApi = () => {
@@ -32,6 +28,23 @@ class Build extends Component {
 			this.setState({
 				cardsApi: response.data.data
 			})
+		})
+	}
+
+	searchApi = () => {
+		axios.get(`https://api.scryfall.com/cards/search/?q=${this.state.searchNameValue}`).then(res => {
+			this.setState({
+				cardsApi:res.data.data
+			})
+		})
+		this.setState({
+			searchNameValue: ''
+		})
+	}
+
+	setName = (name) => {
+		this.setState({
+			searchNameValue: name
 		})
 	}
 	
@@ -94,7 +107,10 @@ class Build extends Component {
 					:
 				
 				<div className='build-component component-container'>
-					searchTools
+					<Search 
+						setName={this.setName}
+						searchApi={this.searchApi}
+					/>
 					<div className='cards-wrapper'>
 						<div className='searched-cards'>
 							<CardsDisplayer 

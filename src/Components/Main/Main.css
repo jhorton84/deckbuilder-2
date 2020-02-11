@@ -9,8 +9,8 @@
 .component-container {
 	display: flex;
 	background: yellow;
-	margin-top: 20px;
-	width: 100%;
+	/* margin-top: 20px; */
+	/* width: 100%; */
 }
 
 .container {
